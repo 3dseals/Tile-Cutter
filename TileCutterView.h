@@ -21,5 +21,6 @@
 @property (nonatomic, retain) IBOutlet NSButton *guideCheckbox;
 @property (nonatomic, retain) IBOutlet NSButton *skipCheckbox;
 @property (nonatomic, retain) IBOutlet NSButton *saveButton;
+@property (nonatomic, retain) IBOutlet NSButton *cutButton;
 - (IBAction) valueChanged:(id)sender;
 @end

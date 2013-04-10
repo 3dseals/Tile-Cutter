@@ -23,9 +23,11 @@
 @property (retain) IBOutlet NSWindow *progressWindow;
 @property (retain) IBOutlet NSTextField *progressLabel;
 @property (retain) IBOutlet NSString *baseFilename;
+@property (assign) IBOutlet NSImageView *preview;
 
 @property (retain) TileCutterCore *tileCore;
 
+- (IBAction)cutTilesAuto:(id)sender;
 - (IBAction)saveButtonPressed:(id)sender;
 - (IBAction)openSelected:(id)sender;
 @end

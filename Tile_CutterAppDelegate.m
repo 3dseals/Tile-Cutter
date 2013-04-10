@@ -24,7 +24,7 @@
 
 @implementation Tile_CutterAppDelegate
 
-@synthesize window, tileCutterView, widthTextField, heightTextField, rowBar, columnBar, progressWindow, progressLabel, baseFilename,tileCore;
+@synthesize window, tileCutterView, widthTextField, heightTextField, rowBar, columnBar, progressWindow, progressLabel, baseFilename,tileCore,preview;
 
 - (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename
 {
@@ -52,7 +52,7 @@
         [defaults setInteger:200 forKey:@"heightField"];
     }
     
-	self.tileCore = [TileCutterCore new];
+	self.tileCore = [[TileCutterCore alloc] initWithDelegate:self];
 	self.tileCore.operationsDelegate = self;
 }
 
@@ -75,6 +75,12 @@
 	[self.tileCore startSavingTiles];    
     
     [pool drain];
+}
+
+- (IBAction)cutTilesAuto:(id)sender {
+    [heightTextField setStringValue:@"0"];
+    [widthTextField setStringValue:@"0"];
+    [tileCutterView setNeedsDisplay:YES];
 }
 
 - (IBAction)saveButtonPressed:(id)sender

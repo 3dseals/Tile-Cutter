@@ -10,7 +10,7 @@
 
 
 @implementation TileCutterView
-@synthesize filename, tileWidthField, tileHeightField, guideColorWell, image, guideCheckbox, saveButton;
+@synthesize filename, tileWidthField, tileHeightField, guideColorWell, image, guideCheckbox, saveButton, cutButton;
 @synthesize skipCheckbox;
 
 - (id)initWithFrame:(NSRect)frame 
@@ -90,27 +90,31 @@
     tileWidth *= pctChange;
     tileHeight *= pctChange;
     
-    // Horizontal Slizes
-    float curPos = destRect.size.height + destRect.origin.y;
-    while (curPos > destRect.origin.y)
-    {
-        NSBezierPath *linePath = [NSBezierPath bezierPath];
-        [linePath moveToPoint:NSMakePoint(destRect.origin.x, curPos)];
-        [linePath lineToPoint:NSMakePoint(destRect.size.width + destRect.origin.x, curPos)];
-        [linePath setLineWidth:1.0f];
-        [linePath stroke];
-        curPos -= tileHeight;
-    }
-    
-    curPos = destRect.origin.x;
-    while (curPos < destRect.size.width + destRect.origin.x)
-    {
-        NSBezierPath *linePath = [NSBezierPath bezierPath];
-        [linePath moveToPoint:NSMakePoint(curPos, destRect.origin.y)];
-        [linePath lineToPoint:NSMakePoint(curPos, destRect.size.height + destRect.origin.y)];
-        [linePath setLineWidth:1.0f];
-        [linePath stroke];
-        curPos += tileWidth;
+    if (tileWidth&&tileHeight) {
+        
+        
+        // Horizontal Slizes
+        float curPos = destRect.size.height + destRect.origin.y;
+        while (curPos > destRect.origin.y)
+        {
+            NSBezierPath *linePath = [NSBezierPath bezierPath];
+            [linePath moveToPoint:NSMakePoint(destRect.origin.x, curPos)];
+            [linePath lineToPoint:NSMakePoint(destRect.size.width + destRect.origin.x, curPos)];
+            [linePath setLineWidth:1.0f];
+            [linePath stroke];
+            curPos -= tileHeight;
+        }
+        
+        curPos = destRect.origin.x;
+        while (curPos < destRect.size.width + destRect.origin.x)
+        {
+            NSBezierPath *linePath = [NSBezierPath bezierPath];
+            [linePath moveToPoint:NSMakePoint(curPos, destRect.origin.y)];
+            [linePath lineToPoint:NSMakePoint(curPos, destRect.size.height + destRect.origin.y)];
+            [linePath setLineWidth:1.0f];
+            [linePath stroke];
+            curPos += tileWidth;
+        }
     }
     
     

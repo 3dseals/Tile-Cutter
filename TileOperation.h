@@ -26,6 +26,7 @@
 @property (assign) NSObject <TileOperationDelegate> *delegate;
 @property (retain) NSBitmapImageRep *imageRep;
 @property NSUInteger row;
+@property NSUInteger column;
 @property (retain) NSString *baseFilename;
 @property (readwrite, copy) NSString *outputSuffix;
 @property NSUInteger tileHeight;

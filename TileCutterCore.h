@@ -11,7 +11,9 @@
 
 
 @interface TileCutterCore : NSObject  <TileOperationDelegate>
-{}
+{
+    id AppDelegate;
+}
 
 #pragma mark  Public Properties
 
@@ -38,6 +40,7 @@
 
 #pragma mark Public Methods
 
+- (id) initWithDelegate:(id)aDelegate;
 - (void) startSavingTiles;
 
 #pragma mark Private  Properties

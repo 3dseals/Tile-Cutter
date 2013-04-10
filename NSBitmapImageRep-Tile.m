@@ -38,8 +38,8 @@
     int height = [self pixelsHigh];
     int bytesPerPixel = [self bitsPerPixel] / 8;
     
-    int theRow = row * tileHeight;
-    int theCol = column * tileWidth;
+    int theRow = row;
+    int theCol = column;
     
     int i,x,y;
     unsigned char *p1, *p2;

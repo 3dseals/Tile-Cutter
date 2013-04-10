@@ -41,7 +41,7 @@
 
 
 @implementation TileOperation
-@synthesize delegate, imageRep, row, baseFilename, tileHeight, tileWidth, outputFormat;
+@synthesize delegate, imageRep, row, column, baseFilename, tileHeight, tileWidth, outputFormat;
 @synthesize tilesInfo;
 @synthesize skipTransparentTiles;
 @synthesize outputSuffix;
@@ -109,10 +109,11 @@
 		// Safe Empty Suffix
 		if (!self.outputSuffix)
 			self.outputSuffix = @"";
+        
+        NSSize size = [imageRep size];
 		
-        for (int column = 0; column < tileColCount; column++)
-        {
-            NSImage *subImage = [imageRep subImageWithTileWidth:(float)tileWidth
+
+        NSImage *subImage = [imageRep subImageWithTileWidth:(float)tileWidth
 													 tileHeight:(float)tileHeight 
 														 column:column 
 															row:row 
@@ -154,12 +155,12 @@
 				if ([self isCancelled])
 					goto finish;
 				
-				NSString *outPath = [NSString stringWithFormat:@"%@_%d_%d%@.%@", baseFilename, row, column, self.outputSuffix, extension];
+				NSString *outPath = [NSString stringWithFormat:@"%@_%d_%d%@.%@", baseFilename, (int)row, (int)column, self.outputSuffix, extension];
 				[bitmapData writeToFile:outPath atomically:YES];
 				
 				// Add created Tile Info to tilesInfo array
-				NSRect tileRect = NSRectFromCGRect( CGRectMake(column * tileWidth, 
-															   row * tileHeight, 
+				NSRect tileRect = NSRectFromCGRect( CGRectMake(row,
+															   column,
 															   [subImage size].width, 
 															   [subImage size].height));
 				NSDictionary *tileInfoDict = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -172,7 +173,7 @@
             if ([delegate respondsToSelector:@selector(operationDidFinishTile:)])
                 [delegate operationDidFinishTile: self];
             
-        }
+        
         
         if ([delegate respondsToSelector:@selector(operationDidFinishSuccessfully:)])
             [delegate operationDidFinishSuccessfully: self ];

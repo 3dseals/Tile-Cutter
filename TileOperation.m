@@ -147,8 +147,9 @@
 				
 				if (bitmapData == nil)
 				{
-					[self informDelegateOfError:NSLocalizedString(@"Error retrieving bitmap data from result", @"")];
-					goto finish;
+					//[self informDelegateOfError:NSLocalizedString(@"Error retrieving bitmap data from result", @"")];
+                    NSLog(@"Error retrieving bitmap data from result");
+                    goto finish;
 				}
 				
 				

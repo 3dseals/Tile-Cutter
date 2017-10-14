@@ -102,8 +102,8 @@
             for (int column = 0; column < tileColCount; column++)
             {
                 TileOperation *op = [[TileOperation alloc] init];
-                op.row = row * self.tileWidth;
-                op.column = column * self.tileHeight;
+                op.row = row * self.tileHeight;
+                op.column = column * self.tileWidth;
                 op.tileWidth = self.tileWidth;
                 op.tileHeight = self.tileHeight;
                 op.imageRep = imageRep;

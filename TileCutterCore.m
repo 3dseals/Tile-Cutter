@@ -246,7 +246,7 @@
                     while (rectW < outputImageSizeForPlist.width && srcRect[index + rectX - x + rectW]) {
                         rectW++;
                     }
-                    while (rectH < outputImageSizeForPlist.height && srcRect[x + (int)outputImageSizeForPlist.width*(rectY + rectH)]) {
+                    while (rectH < outputImageSizeForPlist.height && (rectY + rectH <= outputImageSizeForPlist.height) && srcRect[x + (int)outputImageSizeForPlist.width*(rectY + rectH)]) {
                         rectH++;
                     }
                     NSValue* newTile = [NSValue valueWithRect:NSMakeRect(rectX, rectY, rectW, rectH)];
